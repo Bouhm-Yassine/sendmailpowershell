@@ -25,11 +25,11 @@ public class Main {
         String filename;
         if(isWin) {
              System.out.println("========= WINDOWS");
-            filename = "scripts/script.bat";
+            filename = "./scripts/script.bat";
             // builder.command(System.getProperty("user.dir") + "\\scripts\\script.sh");
         } else {
             System.out.println("========= UNIX");
-            filename = "scripts/script.sh";
+            filename = "./scripts/script.sh";
             // builder.command("sh", "-c", System.getProperty("user.dir") + "/scripts/script.sh");
         }
 
@@ -39,20 +39,18 @@ public class Main {
         try {
             Process process = builder.start();
             ProcessReader task = new ProcessReader(process.getInputStream());
-            Future<List<String>> future = pool.submit(task);
+            // Future<List<String>> future = pool.submit(task);
 
-            List<String> results = future.get();
+            // List<String> results = future.get();
 
-            for(String s: results) {
+            /*for(String s: results) {
                 System.out.println(s);
-            }
+            }*/
 
             int exitCode = process.waitFor();
             System.out.println("======> EXIT CODE: " + exitCode);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
         } finally {
             pool.shutdown();
         }
