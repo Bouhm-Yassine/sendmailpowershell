@@ -19,19 +19,21 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+        boolean isWin = System.getProperty("os.name").toLowerCase().startsWith("windows");
 
-            boolean isWin = System.getProperty("os.name").toLowerCase().startsWith("windows");
-
-        ProcessBuilder builder = new ProcessBuilder();
+        // ProcessBuilder builder = new ProcessBuilder();
+        String filename;
         if(isWin) {
-            System.out.println("========= WINDOWS");
-            builder.command(System.getProperty("user.dir") + "\\scripts\\script.sh");
+             System.out.println("========= WINDOWS");
+            filename = "scripts/script.bat";
+            // builder.command(System.getProperty("user.dir") + "\\scripts\\script.sh");
         } else {
             System.out.println("========= UNIX");
-            builder.command("sh", "-c", System.getProperty("user.dir") + "/scripts/script.sh");
+            filename = "scripts/script.sh";
+            // builder.command("sh", "-c", System.getProperty("user.dir") + "/scripts/script.sh");
         }
 
-
+        ProcessBuilder builder = new ProcessBuilder(filename);
         ExecutorService pool = Executors.newSingleThreadExecutor();
 
         try {
