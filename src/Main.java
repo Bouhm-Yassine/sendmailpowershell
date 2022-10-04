@@ -25,11 +25,11 @@ public class Main {
         String filename;
         if(isWin) {
              System.out.println("========= WINDOWS");
-            filename = "./scripts/script.bat";
+            filename = System.getProperty("user.dir") + "\\scripts\\script.bat";
             // builder.command(System.getProperty("user.dir") + "\\scripts\\script.sh");
         } else {
             System.out.println("========= UNIX");
-            filename = "./scripts/script.sh";
+            filename = System.getProperty("user.dir") + "/scripts/script.sh";
             // builder.command("sh", "-c", System.getProperty("user.dir") + "/scripts/script.sh");
         }
 
